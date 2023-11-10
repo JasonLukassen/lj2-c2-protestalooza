@@ -4,7 +4,8 @@ session_start();
 include "../backend/db.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['email'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
 
     $query = "SELECT * FROM users WHERE email = ?";
@@ -19,14 +20,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($query_result) {
         if (!mysqli_num_rows($query_result) > 0) {
+            $query = "INSERT INTO users (name, email, password) VALUES ($name, $email, $password)";
+            mysqli_query($connection, $query);
             $_SESSION['loggedin'] = true;
-            header('Location: dashboard.php');
+            header('Location: ../home.php');
             exit;
         } else {
             $error = 'Email already in use';
         }
     } else {
-        $error = 'User not found';
+        $error = 'Something went wrong';
     }
 
     mysqli_stmt_close($stmt);

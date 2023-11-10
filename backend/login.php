@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($query_result) {
         if (mysqli_num_rows($query_result) > 0) {
             $_SESSION['loggedin'] = true;
-            header('Location: dashboard.php');
+            header('Location: ../frontend/home.php');
             exit;
         } else {
             $error = 'Invalid password';
@@ -40,3 +40,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 //     exit;
 // }
 ?>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+
+    </nav>
+    <main>
+        <section>
+
+        </section>
+        <section>
+            
+        </section>
+
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>
